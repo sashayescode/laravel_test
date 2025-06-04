@@ -1,10 +1,21 @@
 @extends('layouts.app')
+@php
+    use Illuminate\Support\Facades\Route;
+@endphp
 
+@props(['type' => 'a', 'links'])
 
-<nav class="m-4">
-    <ul class="flex justify-around w-1/3">
-        @foreach ($links as $link)
-        <li class="text-black hover:text-blue-400 hover:underline hover:underline-offset-2 text-decoration-400"><a href="{{ route($link) }}">{{ucfirst($link)}}</a></li>
-        @endforeach
-    </ul>
-</nav>
+@foreach ($links as $link)
+    <li @class([
+        'hover:text-blue-400 hover:underline hover:underline-offset-2 text-decoration-400',
+        'text-black' => Route::currentRouteName() === $link,
+        'text-blue-500' => !(Route::currentRouteName() === $link),
+
+    ])>
+    @if ($type === 'a')
+        <a href="{{ route($link) }}">{{ucfirst($link)}}</a>
+    @elseif($type === 'button')
+            <button type="button">{{ucfirst($link)}}</button>
+        @endif
+    </li>
+@endforeach
