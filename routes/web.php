@@ -1,5 +1,6 @@
 <?php
 
+use App\Exceptions\CustomException;
 use Illuminate\Support\Facades\Route;
 use App\Models\Job;
 
@@ -17,10 +18,13 @@ Route::get('/contact', function () {
 
 //jobs pages
 Route::get('/jobs', function () {
-    return view('jobs/jobs', [
-        'name' => 'Jobs',
-        'jobs' => Job::all(),
-    ]);
+
+    $jobs = Job::all();
+    dd($jobs);
+    // return view('jobs/jobs', [
+    //     'name' => 'Jobs',
+    //     'jobs' => Job::all(),
+    // ]);
 })->name('jobs');
 
 
