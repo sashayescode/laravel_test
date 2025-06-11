@@ -1,10 +1,13 @@
 <x-layout :page="$name"></x-layout>
 
-<ul>
+<div>
     @foreach($jobs as $job)
-        <li>
+        <div class="flex flex-col border-2 border-blue-200 rounded-xl p-4 m-2 *:block">
+        <div class="text-blue-400"> {{$job->employer['name']}} </div>
             <a href="jobs/{{$job['id']}}"><strong>{{$job['title']}}.</strong> Pays: {{$job['salary']}}</a>
 
-        </li>
+        </div>
     @endforeach
-</ul>
+</div>
+
+{{$jobs->links()}}

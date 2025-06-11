@@ -19,16 +19,15 @@ Route::get('/contact', function () {
 //jobs pages
 Route::get('/jobs', function () {
 
-    $jobs = Job::all();
-    dd($jobs);
-    // return view('jobs/jobs', [
-    //     'name' => 'Jobs',
-    //     'jobs' => Job::all(),
-    // ]);
+    $jobs = Job::with('employer')->paginate(3);
+    return view('jobs/jobs', [
+        'name' => 'Jobs',
+        'jobs' => $jobs,
+    ]);
 })->name('jobs');
 
 
-Route::get('jobs/{id}', function ($id){
+Route::get('jobs/{id}', function ($id) {
 
     return view('jobs.job-description', [
         'name' => 'Job description',

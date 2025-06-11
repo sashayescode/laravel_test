@@ -16,7 +16,7 @@
             <x-nav-link :links="['home', 'about', 'contact']" />
         </ul>
     </nav>
-    <h1>Welcome to {{$page ?? 'No page'}}</h1>
+    <h1 class="text-2xl font-bold mb-6">Welcome to {{$page ?? 'No page'}}</h1>
 
     {{ $slot }}
 </body>
